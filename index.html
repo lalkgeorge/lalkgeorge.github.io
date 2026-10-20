@@ -91,9 +91,24 @@ h2{font-size:clamp(30px,4vw,42px);letter-spacing:-1.2px;line-height:1.15;margin-
 .job ul{margin-top:10px;padding-left:18px;color:var(--muted);font-size:15px;display:grid;gap:4px;max-width:760px}
 .job.earlier:before{border-color:var(--soft)}
 
+/* featured AI card */
+.feature{grid-column:1/-1;display:grid;grid-template-columns:1.3fr 1fr;gap:28px;align-items:center;background:linear-gradient(120deg,#4338ca,#7c3aed);color:#fff;border:none}
+.feature h3{font-size:24px;letter-spacing:-.5px}
+.feature p{color:rgba(255,255,255,.88);font-size:16px}
+.feature .ic{background:rgba(255,255,255,.16);color:#fff}
+.feature .tag{display:inline-block;font-size:12px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;background:rgba(255,255,255,.18);padding:5px 12px;border-radius:999px;margin-bottom:14px}
+.feature ul{list-style:none;display:grid;gap:10px}
+.feature li{background:rgba(255,255,255,.12);border-radius:12px;padding:12px 16px;font-size:15px;font-weight:500}
+@media (max-width:860px){.feature{grid-template-columns:1fr}}
+
 /* toolkit */
 .tools{display:flex;flex-wrap:wrap;gap:10px;margin-top:34px}
 .tool{padding:9px 16px;border-radius:999px;background:var(--surface);border:1.5px solid var(--line);font-size:14.5px;font-weight:600}
+.tgroup{margin-top:34px}
+.tgroup h3{font-size:14px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--soft)}
+.tgroup .tools{margin-top:14px}
+.tool.ai{background:linear-gradient(120deg,#4338ca,#7c3aed);color:#fff;border-color:transparent}
+.tool.main{font-size:16px;padding:11px 20px;border-width:2px}
 .tool.k{border-color:color-mix(in srgb,var(--accent) 40%,var(--line));color:var(--accent-ink);background:var(--accent-bg)}
 
 /* contact */
@@ -137,7 +152,7 @@ footer{padding:40px 0 56px;color:var(--soft);font-size:14px;text-align:center}
   <div class="wrap">
     <span class="eyebrow">SaaS &amp; B2B Marketing · Hyderabad, India</span>
     <h1>I help SaaS products get <em>found, tried &amp; bought.</em></h1>
-    <p class="lede">11+ years in digital marketing, most of it in B2B SaaS. I build full-funnel growth systems across paid ads, SEO &amp; AEO, ABM and clean attribution, so marketing shows up as pipeline, not just clicks.</p>
+    <p class="lede">11+ years in digital marketing, most of it in B2B SaaS. I build full-funnel growth systems across paid ads, SEO &amp; AEO, ABM and clean attribution, so marketing shows up as pipeline, not just clicks. These days I run much of it AI-first, with Claude plugged straight into Meta Ads.</p>
     <div class="cta">
       <a class="btn btn-primary" href="https://x.com/LALKGEORGE" target="_blank" rel="noopener">Follow my lessons on X →</a>
       <a class="btn btn-ghost" href="#experience">See my experience</a>
@@ -158,10 +173,24 @@ footer{padding:40px 0 56px;color:var(--soft);font-size:14px;text-align:center}
     <h2>Growth that connects first touch to closed revenue</h2>
     <p class="intro">I work across the whole funnel, so every channel, campaign and dashboard ties back to qualified pipeline.</p>
     <div class="grid3">
+      <div class="card feature">
+        <div>
+          <span class="tag">Main focus</span>
+          <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></svg></div>
+          <h3>AI-powered Meta Ads</h3>
+          <p style="margin-top:8px">I run Meta Ads with Claude connected directly to the ad account, so analysis and optimization that used to take hours takes minutes, with HubSpot closing the loop to pipeline.</p>
+        </div>
+        <ul>
+          <li>Claude integrations for account audits, wasted-spend checks and creative-fatigue alerts</li>
+          <li>AI-assisted ad copy, creative angles and testing plans</li>
+          <li>Early experiments with ChatGPT Ads as a new channel</li>
+          <li>Meta + HubSpot attribution so spend maps to real pipeline</li>
+        </ul>
+      </div>
       <div class="card">
         <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m7 15 4-4 3 3 6-6"/></svg></div>
         <h3>Paid acquisition</h3>
-        <p>Google, Meta, LinkedIn and Microsoft Ads, built around qualified pipeline and CAC rather than vanity metrics.</p>
+        <p>Meta, Google, LinkedIn and Microsoft Ads, built around qualified pipeline and CAC rather than vanity metrics.</p>
       </div>
       <div class="card">
         <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></div>
@@ -175,13 +204,13 @@ footer{padding:40px 0 56px;color:var(--soft);font-size:14px;text-align:center}
       </div>
       <div class="card">
         <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4"/></svg></div>
-        <h3>Tracking &amp; attribution</h3>
-        <p>End-to-end setup in GTM, GA4 and HubSpot. Clean data, accurate attribution, no blind spots.</p>
+        <h3>Tracking &amp; dashboards</h3>
+        <p>End-to-end GTM and GA4 setup, plus KPI dashboards and forecasts. Clean data, no blind spots.</p>
       </div>
       <div class="card">
         <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 17v-5M12 17V8M16 17v-3"/></svg></div>
-        <h3>Dashboards &amp; forecasting</h3>
-        <p>KPI dashboards and performance models that make budget decisions obvious.</p>
+        <h3>HubSpot CRM &amp; automation</h3>
+        <p>Lifecycle stages, lead routing, workflows and reporting, so every lead is tracked from first touch to closed deal.</p>
       </div>
       <div class="card">
         <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.3-2 5-2 5s3.7-.5 5-2c.7-.8.7-2.1-.1-2.9a2.2 2.2 0 0 0-2.9-.1z"/><path d="M12 15l-3-3a22 22 0 0 1 2-3.9A12.9 12.9 0 0 1 22 2c0 2.7-.8 7.5-6 11a22.4 22.4 0 0 1-4 2z"/></svg></div>
@@ -228,7 +257,9 @@ footer{padding:40px 0 56px;color:var(--soft);font-size:14px;text-align:center}
         <div class="top"><h3>Marketing Manager · <span class="co">Fello</span></h3><span class="when">Aug 2024 – Present</span></div>
         <p>Leading performance marketing, GTM strategy and data infrastructure for an AI-first real estate SaaS platform.</p>
         <ul>
-          <li>Scale Google, Meta and LinkedIn Ads for qualified pipeline and efficient CAC</li>
+          <li>Run Meta Ads AI-first, with Claude integrations for audits, optimization and creative analysis</li>
+          <li>Scale Meta, Google and LinkedIn Ads for qualified pipeline and efficient CAC</li>
+          <li>HubSpot as the CRM and automation backbone for lead handling and reporting</li>
           <li>SEO and AEO so Fello ranks on Google and gets surfaced by AI answer engines</li>
           <li>Own tracking and attribution end to end across GTM, GA4 and HubSpot</li>
           <li>Dashboards and forecasting that drive data-backed budget decisions</li>
@@ -269,12 +300,17 @@ footer{padding:40px 0 56px;color:var(--soft);font-size:14px;text-align:center}
   <div class="wrap">
     <div class="label">Toolkit</div>
     <h2>Tools I use every day</h2>
-    <div class="tools">
-      <span class="tool k">Google Ads</span><span class="tool k">Meta Ads</span><span class="tool k">LinkedIn Ads</span><span class="tool">Microsoft Ads</span>
-      <span class="tool k">GA4</span><span class="tool k">Google Tag Manager</span><span class="tool k">HubSpot</span><span class="tool">Salesforce</span>
-      <span class="tool">6sense</span><span class="tool">RollWorks</span><span class="tool">SEMrush</span><span class="tool">Ahrefs</span>
-      <span class="tool">Moz</span><span class="tool">SpyFu</span><span class="tool">Google Search Console</span>
-    </div>
+    <p class="intro">AI sits at the center of how I work now. Claude and ChatGPT speed up analysis, copy and optimization across every channel.</p>
+    <div class="tgroup"><h3>AI stack</h3><div class="tools">
+      <span class="tool ai main">Claude</span><span class="tool ai main">Claude × Meta Ads integration</span><span class="tool ai">ChatGPT</span><span class="tool ai">ChatGPT Ads</span>
+    </div></div>
+    <div class="tgroup"><h3>Core platforms</h3><div class="tools">
+      <span class="tool k main">Meta Ads</span><span class="tool k main">HubSpot</span><span class="tool k">Google Ads</span><span class="tool k">LinkedIn Ads</span><span class="tool k">Microsoft Ads</span>
+    </div></div>
+    <div class="tgroup"><h3>Tracking, ABM &amp; SEO</h3><div class="tools">
+      <span class="tool k">GA4</span><span class="tool k">Google Tag Manager</span><span class="tool k">Salesforce</span><span class="tool k">6sense</span><span class="tool k">RollWorks</span>
+      <span class="tool k">SEMrush</span><span class="tool k">Ahrefs</span><span class="tool k">Moz</span><span class="tool k">SpyFu</span><span class="tool k">Google Search Console</span>
+    </div></div>
   </div>
 </section>
 
