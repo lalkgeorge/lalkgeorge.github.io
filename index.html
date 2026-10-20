@@ -109,7 +109,9 @@ h2{font-size:clamp(30px,4vw,42px);letter-spacing:-1.2px;line-height:1.15;margin-
 .tgroup .tools{margin-top:14px}
 .tool.ai{background:linear-gradient(120deg,#4338ca,#7c3aed);color:#fff;border-color:transparent}
 .tool.main{font-size:16px;padding:11px 20px;border-width:2px}
-.tool.k{border-color:color-mix(in srgb,var(--accent) 40%,var(--line));color:var(--accent-ink);background:var(--accent-bg)}
+.tool.k.main{background:var(--accent);color:#fff;border-color:var(--accent)}
+.tool.k{border-color:var(--accent);color:var(--accent-ink);background:var(--surface)}
+.tool:before{content:"✓ ";font-weight:800}
 
 /* contact */
 .contact{background:var(--accent);color:#fff;border-radius:28px;padding:56px;text-align:center;position:relative;overflow:hidden}
@@ -121,7 +123,8 @@ h2{font-size:clamp(30px,4vw,42px);letter-spacing:-1.2px;line-height:1.15;margin-
 footer{padding:40px 0 56px;color:var(--soft);font-size:14px;text-align:center}
 
 @media (max-width:860px){
-  .links{display:none}
+  nav .wrap{flex-wrap:wrap;height:auto;padding-top:10px;padding-bottom:10px;row-gap:8px}
+  .links{order:3;width:100%;gap:20px;overflow-x:auto;font-size:14px;white-space:nowrap;padding-bottom:2px}
   .stats{grid-template-columns:repeat(2,1fr)}
   .grid3,.results{grid-template-columns:1fr}
   .hero{padding:64px 0 56px}
