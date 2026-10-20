@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The B2B SaaS tracking checklist: GA4, GTM &amp; HubSpot | Lal K George</title>
+<meta name="description" content="UTM rules, the events that matter, getting source data into the CRM, and sending better conversions back to ad platforms.">
+<link rel="canonical" href="https://lalkgeorge.github.io/blog/b2b-saas-tracking-checklist/">
+<meta property="og:title" content="The B2B SaaS tracking checklist: GA4, GTM &amp; HubSpot | Lal K George">
+<meta property="og:description" content="UTM rules, the events that matter, getting source data into the CRM, and sending better conversions back to ad platforms.">
+<meta property="og:url" content="https://lalkgeorge.github.io/blog/b2b-saas-tracking-checklist/">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:creator" content="@LALKGEORGE">
+<link rel="alternate" type="application/rss+xml" title="Lal K George: SaaS marketing blog" href="https://lalkgeorge.github.io/feed.xml">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%234f46e5'/><text x='50' y='66' font-size='46' font-family='Arial' font-weight='800' fill='white' text-anchor='middle'>LG</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/blog.css">
+<!-- analytics -->
+</head>
+<body>
+<nav>
+  <div class="wrap">
+    <a class="logo" href="../../">Lal K George<span>.</span></a>
+    <div class="links">
+      <a href="../../#services">What I do</a>
+      <a href="../../#experience">Experience</a>
+      <a href="../../#toolkit">Toolkit</a>
+      <a class="on" href="../../blog/">Blog</a>
+    </div>
+    <a class="btn btn-primary" href="https://x.com/LALKGEORGE" target="_blank" rel="noopener">Follow on X</a>
+  </div>
+</nav>
+
+<header class="ahead">
+  <div class="wrap">
+    <a class="back" href="../../blog/">← All posts</a>
+    <div style="margin-top:22px"><span class="cat">Tracking &amp; Attribution</span></div>
+    <h1>The B2B SaaS tracking checklist: GA4, GTM &amp; HubSpot</h1>
+    <p class="dek">UTM rules, the events that matter, getting source data into the CRM, and sending better conversions back to ad platforms.</p>
+    <div class="byline"><div class="av">LG</div><div><b>Lal K George</b>Oct 20, 2026 · 7 min read</div></div>
+    <div class="art cover c-tracking"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></svg></div>
+  </div>
+</header>
+
+<article class="article">
+  <div class="wrap">
+    <div class="prose">
+<p>Every marketing decision you make is only as good as the data behind it. And in most B2B SaaS companies I've seen, that data has holes: missing UTMs, forms that don't fire events, demo bookings tracked twice, and a CRM that has no idea which ad brought a lead in.</p>
+
+<p>Here's the tracking checklist I use with GA4, Google Tag Manager and HubSpot. It isn't glamorous, but it's the foundation everything else sits on.</p>
+
+<h2>1. Foundations</h2>
+<ul>
+<li><strong>One GTM container</strong> on every page, including the app signup and booking pages, not just the marketing site.</li>
+<li><strong>GA4 configured through GTM</strong>, not hard-coded, so changes don't need developers.</li>
+<li><strong>Internal traffic filtered</strong> (office IPs, your team) and <strong>referral exclusions</strong> set for payment and booking tools, so sessions don't break in the middle of a conversion.</li>
+<li><strong>Cross-domain tracking</strong> if your site and app live on different domains.</li>
+<li><strong>Consent mode</strong> set up properly for the regions you sell into.</li>
+</ul>
+
+<h2>2. A UTM convention everyone follows</h2>
+<p>Inconsistent UTMs are the most common reason channel reports don't add up. Decide once, write it down, and use a shared builder sheet.</p>
+<pre><code>utm_source   = platform   (meta, google, linkedin, x, newsletter)
+utm_medium   = type       (paid_social, cpc, email, organic_social)
+utm_campaign = name       (2026q4_webinar_retarget)
+utm_content  = ad/variant (video_hook_a)</code></pre>
+<p>Always lowercase. No spaces. Never tag internal links.</p>
+
+<h2>3. Track the events that matter</h2>
+<p>Page views are not a funnel. Track the actions that show intent, and mark the important ones as key events (conversions) in GA4:</p>
+<table>
+<thead><tr><th>Event</th><th>Why it matters</th></tr></thead>
+<tbody>
+<tr><td><code>generate_lead</code></td><td>Any form fill. Include the form name as a parameter.</td></tr>
+<tr><td><code>demo_booked</code></td><td>Your most important signal. Fire it on actual booking confirmation, not the button click.</td></tr>
+<tr><td><code>sign_up</code></td><td>Trial or free-plan signups.</td></tr>
+<tr><td><code>pricing_view</code></td><td>Strong intent signal, great for retargeting and lead scoring.</td></tr>
+<tr><td><code>content_download</code></td><td>Top-of-funnel engagement.</td></tr>
+</tbody>
+</table>
+<div class="callout"><span class="ct">Common mistake</span><p>Firing the conversion on button click instead of on success. You end up counting failed submissions and people who closed the calendar without booking.</p></div>
+
+<h2>4. Get the source into the CRM</h2>
+<p>GA4 tells you about sessions. Your CRM tells you about revenue. The magic happens when they're connected:</p>
+<ul>
+<li>Capture <strong>UTMs and click IDs</strong> (gclid, fbclid, li_fat_id) in hidden form fields and store them on the HubSpot contact.</li>
+<li>Keep <strong>original source</strong> (first touch) and <strong>latest source</strong> separate.</li>
+<li>Make sure HubSpot's tracking code and forms run on every page with a form.</li>
+</ul>
+
+<h2>5. Send conversions back to the ad platforms</h2>
+<p>Ad algorithms optimize for whatever you tell them is a conversion. If that's a form fill, they'll find cheap form fills. Send them better signals:</p>
+<ul>
+<li><strong>Meta Conversions API</strong> alongside the pixel, with deduplication.</li>
+<li><strong>Google Ads enhanced conversions</strong> plus offline conversion imports for SQLs and opportunities.</li>
+<li><strong>LinkedIn Insight Tag</strong> and conversions API for key events.</li>
+</ul>
+
+<h2>6. QA before you trust it</h2>
+<ul>
+<li>Test every form and booking flow in GTM preview and GA4 DebugView.</li>
+<li>Check that one real conversion shows up once, not twice, in GA4, the ad platform and HubSpot.</li>
+<li>Re-test after every site release. Tracking breaks silently.</li>
+</ul>
+
+<h2>The one-page version</h2>
+<ul>
+<li>GTM everywhere, GA4 through GTM, internal traffic filtered</li>
+<li>Written UTM convention, lowercase, shared builder</li>
+<li>Key events fire on success, not on click</li>
+<li>UTMs and click IDs stored in the CRM, first and latest touch</li>
+<li>Server-side or offline conversions sent back to Meta, Google and LinkedIn</li>
+<li>QA after every release</li>
+</ul>
+
+<p>Clean tracking won't make your campaigns better by itself. It will stop you from confidently scaling the wrong ones. Questions? Find me on <a href="https://x.com/LALKGEORGE">X</a> or <a href="https://www.linkedin.com/in/lalkgeorge">LinkedIn</a>.</p>
+
+    </div>
+    <div class="share">
+      <span>Share</span>
+      <a href="https://x.com/intent/post?text=The%20B2B%20SaaS%20tracking%20checklist%3A%20GA4%2C%20GTM%20%26%20HubSpot&url=https%3A%2F%2Flalkgeorge.github.io%2Fblog%2Fb2b-saas-tracking-checklist%2F%3Futm_source%3Dshare" target="_blank" rel="noopener">Post on X</a>
+      <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Flalkgeorge.github.io%2Fblog%2Fb2b-saas-tracking-checklist%2F%3Futm_source%3Dshare" target="_blank" rel="noopener">Share on LinkedIn</a>
+    </div>
+  </div>
+</article>
+
+<section class="more">
+  <div class="wrap">
+    <div class="label">Keep reading</div>
+    <div class="posts"><a class="post" data-cat="ai" href="../../blog/how-i-run-meta-ads-with-claude/">
+  <div class="art c-ai"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></svg></div>
+  <div class="body">
+    <span class="cat">AI &amp; Claude</span>
+    <h3>How I run Meta Ads with Claude: my actual workflow</h3>
+    <p>Claude connected straight to the ad account turns hours of spreadsheet audits into a few questions. Here&#x27;s the setup, the weekly prompts, and the rules I don&#x27;t break.</p>
+    <div class="meta">Oct 20, 2026 · 7 min read</div>
+  </div>
+</a><a class="post" data-cat="hubspot" href="../../blog/hubspot-lifecycle-stages-b2b-saas/">
+  <div class="art c-hubspot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><circle cx="12" cy="4" r="1.5"/><circle cx="19" cy="17" r="1.5"/><circle cx="5" cy="17" r="1.5"/><path d="M12 9V5.5M14.6 13.5l3.2 2.4M9.4 13.5l-3.2 2.4"/></svg></div>
+  <div class="body">
+    <span class="cat">HubSpot</span>
+    <h3>HubSpot lifecycle stages for B2B SaaS: the setup that ends lead-quality fights</h3>
+    <p>Clear stage definitions, fast routing and rejection reasons. The HubSpot setup that gets marketing and sales on the same page.</p>
+    <div class="meta">Oct 20, 2026 · 6 min read</div>
+  </div>
+</a><a class="post" data-cat="linkedin" href="../../blog/linkedin-ads-b2b-saas-mistakes/">
+  <div class="art c-linkedin"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 10v7M8 7v.01M12 17v-4a2 2 0 0 1 4 0v4M12 10v7"/></svg></div>
+  <div class="body">
+    <span class="cat">LinkedIn Ads</span>
+    <h3>7 LinkedIn Ads mistakes that burn B2B SaaS budgets</h3>
+    <p>From hidden default settings to judging LinkedIn by Meta&#x27;s rules. A 10-minute audit that catches most of the waste.</p>
+    <div class="meta">Oct 20, 2026 · 5 min read</div>
+  </div>
+</a></div>
+  </div>
+</section>
+<footer>© 2026 Lal K George · SaaS &amp; B2B Marketing · <a href="../../feed.xml">RSS</a></footer>
+</body>
+</html>

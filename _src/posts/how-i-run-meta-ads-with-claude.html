@@ -1,0 +1,95 @@
+<div class="toc"><b>In this post</b>
+<ol>
+<li><a href="#why">Why I put Claude next to Meta Ads</a></li>
+<li><a href="#setup">The setup</a></li>
+<li><a href="#weekly">My weekly audit, step by step</a></li>
+<li><a href="#creative">Creative and copy</a></li>
+<li><a href="#rules">The rules I don't break</a></li>
+<li><a href="#start">How to start this week</a></li>
+</ol></div>
+
+<p>For years, my Monday morning looked the same: export Meta Ads data, paste it into a sheet, build pivots, squint at frequency columns, and try to remember which ad set I changed last Tuesday. By the time I had answers, half the morning was gone.</p>
+
+<p>Today a large part of that work runs through <strong>Claude connected directly to the ad account</strong>. I ask questions in plain English, Claude pulls the numbers, and I spend my time on decisions instead of spreadsheets. This post is the exact workflow.</p>
+
+<h2 id="why">Why I put Claude next to Meta Ads</h2>
+
+<p>Meta's own interface is great at showing you data and terrible at telling you what matters. The questions I actually care about cut across campaigns, date ranges and breakdowns:</p>
+<ul>
+<li>Which ads are spending without producing a single conversion?</li>
+<li>Where is frequency climbing while CTR drops (creative fatigue)?</li>
+<li>Are two ad sets quietly bidding against each other for the same audience?</li>
+<li>Which creative <em>angles</em> (not just individual ads) are winning?</li>
+</ul>
+<p>Each of those used to be a mini analysis project. With an AI assistant that can read the account, each one becomes a single question.</p>
+
+<h2 id="setup">The setup</h2>
+
+<p>The core idea is simple: give Claude <strong>read access to Meta Ads data</strong> through an integration (a connector or MCP server for the Meta Marketing API), so it works with live numbers instead of whatever I remember to paste in.</p>
+
+<ol>
+<li><strong>Connect the ad account</strong> through an integration that supports Meta Ads. Start with read-only access.</li>
+<li><strong>Give Claude context once</strong>: the business, the funnel, what counts as a conversion, target CPL/CPA, and naming conventions. I keep this in a short brief Claude can refer back to.</li>
+<li><strong>Connect the CRM side</strong> (for me, HubSpot) so "conversions" can be checked against leads that actually became pipeline, not just form fills.</li>
+</ol>
+
+<div class="callout"><span class="ct">Tip</span><p>The brief matters more than the prompts. "Our target CPL is X, anything over 1.5× for 7 days is a problem, and we care about SQLs, not raw leads" turns generic analysis into analysis of <em>your</em> account.</p></div>
+
+<h2 id="weekly">My weekly audit, step by step</h2>
+
+<p>Every week I run roughly the same sequence. These are the kinds of prompts I use:</p>
+
+<h3>1. Wasted spend</h3>
+<pre><code>List every ad that spent more than [amount] in the last 14 days
+with zero conversions. Group by campaign and sort by spend.</code></pre>
+
+<h3>2. Creative fatigue</h3>
+<pre><code>Find ads where frequency has risen above 3 over the last 2 weeks
+while CTR has dropped more than 20% from their first week.</code></pre>
+
+<h3>3. Audience overlap and learning phase</h3>
+<pre><code>Which ad sets are stuck in the learning phase, and why? Are any
+ad sets targeting overlapping audiences in the same campaign?</code></pre>
+
+<h3>4. Budget pacing</h3>
+<pre><code>Which campaigns consistently underspend their daily budget,
+and what's the most likely reason?</code></pre>
+
+<h3>5. Placement and funnel mix</h3>
+<pre><code>Break down spend and CPL by placement (Feed, Reels, Stories,
+Audience Network) and by cold vs. retargeting audiences.</code></pre>
+
+<p>Claude returns a short list of findings and suggested actions. I then <strong>check the important ones in Ads Manager myself</strong> before anything changes.</p>
+
+<h2 id="creative">Creative and copy</h2>
+
+<p>The second big use is creative. Once Claude knows which ads and angles are working, it's very good at:</p>
+<ul>
+<li>Spotting <strong>patterns across winners</strong>: pain-led vs. outcome-led hooks, proof vs. curiosity, video vs. static.</li>
+<li>Writing <strong>new variations of winning angles</strong>, within Meta's character limits.</li>
+<li>Proposing a <strong>simple test plan</strong>: what to test next, how to split budget, and when to call a winner.</li>
+</ul>
+<p>I still decide what goes live. AI is fast at producing options; judgment about the brand and the buyer stays with me.</p>
+
+<h2 id="rules">The rules I don't break</h2>
+
+<ul>
+<li><strong>Read first, write later.</strong> I start every new setup read-only. Changes to budgets or status are made deliberately, by a human.</li>
+<li><strong>New campaigns start paused.</strong> Nothing spends money without a final human check.</li>
+<li><strong>Verify the surprising stuff.</strong> If a finding looks too good or too bad, confirm it in Ads Manager. Attribution settings and date ranges can change the story.</li>
+<li><strong>Close the loop in the CRM.</strong> A cheap lead that never becomes an opportunity isn't cheap. Judge Meta on pipeline, not form fills.</li>
+<li><strong>No sensitive data in prompts.</strong> Customer lists and personal data stay out of chat.</li>
+</ul>
+
+<h2 id="start">How to start this week</h2>
+
+<ol>
+<li>Connect Claude to your Meta Ads account read-only.</li>
+<li>Write a five-line brief: business, conversion event, target CPL/CPA, what "bad" looks like.</li>
+<li>Run just the <strong>wasted spend</strong> and <strong>creative fatigue</strong> prompts above.</li>
+<li>Act on the top 3 findings, and compare next week.</li>
+</ol>
+
+<blockquote>The goal isn't to let AI run your ads. It's to stop spending your best hours finding problems, so you can spend them fixing them.</blockquote>
+
+<p>If you're experimenting with AI in your paid media workflow, I'd love to compare notes. Find me on <a href="https://x.com/LALKGEORGE">X</a> or <a href="https://www.linkedin.com/in/lalkgeorge">LinkedIn</a>.</p>

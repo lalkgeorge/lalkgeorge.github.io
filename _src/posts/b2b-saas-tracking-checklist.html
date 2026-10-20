@@ -1,0 +1,69 @@
+<p>Every marketing decision you make is only as good as the data behind it. And in most B2B SaaS companies I've seen, that data has holes: missing UTMs, forms that don't fire events, demo bookings tracked twice, and a CRM that has no idea which ad brought a lead in.</p>
+
+<p>Here's the tracking checklist I use with GA4, Google Tag Manager and HubSpot. It isn't glamorous, but it's the foundation everything else sits on.</p>
+
+<h2>1. Foundations</h2>
+<ul>
+<li><strong>One GTM container</strong> on every page, including the app signup and booking pages, not just the marketing site.</li>
+<li><strong>GA4 configured through GTM</strong>, not hard-coded, so changes don't need developers.</li>
+<li><strong>Internal traffic filtered</strong> (office IPs, your team) and <strong>referral exclusions</strong> set for payment and booking tools, so sessions don't break in the middle of a conversion.</li>
+<li><strong>Cross-domain tracking</strong> if your site and app live on different domains.</li>
+<li><strong>Consent mode</strong> set up properly for the regions you sell into.</li>
+</ul>
+
+<h2>2. A UTM convention everyone follows</h2>
+<p>Inconsistent UTMs are the most common reason channel reports don't add up. Decide once, write it down, and use a shared builder sheet.</p>
+<pre><code>utm_source   = platform   (meta, google, linkedin, x, newsletter)
+utm_medium   = type       (paid_social, cpc, email, organic_social)
+utm_campaign = name       (2026q4_webinar_retarget)
+utm_content  = ad/variant (video_hook_a)</code></pre>
+<p>Always lowercase. No spaces. Never tag internal links.</p>
+
+<h2>3. Track the events that matter</h2>
+<p>Page views are not a funnel. Track the actions that show intent, and mark the important ones as key events (conversions) in GA4:</p>
+<table>
+<thead><tr><th>Event</th><th>Why it matters</th></tr></thead>
+<tbody>
+<tr><td><code>generate_lead</code></td><td>Any form fill. Include the form name as a parameter.</td></tr>
+<tr><td><code>demo_booked</code></td><td>Your most important signal. Fire it on actual booking confirmation, not the button click.</td></tr>
+<tr><td><code>sign_up</code></td><td>Trial or free-plan signups.</td></tr>
+<tr><td><code>pricing_view</code></td><td>Strong intent signal, great for retargeting and lead scoring.</td></tr>
+<tr><td><code>content_download</code></td><td>Top-of-funnel engagement.</td></tr>
+</tbody>
+</table>
+<div class="callout"><span class="ct">Common mistake</span><p>Firing the conversion on button click instead of on success. You end up counting failed submissions and people who closed the calendar without booking.</p></div>
+
+<h2>4. Get the source into the CRM</h2>
+<p>GA4 tells you about sessions. Your CRM tells you about revenue. The magic happens when they're connected:</p>
+<ul>
+<li>Capture <strong>UTMs and click IDs</strong> (gclid, fbclid, li_fat_id) in hidden form fields and store them on the HubSpot contact.</li>
+<li>Keep <strong>original source</strong> (first touch) and <strong>latest source</strong> separate.</li>
+<li>Make sure HubSpot's tracking code and forms run on every page with a form.</li>
+</ul>
+
+<h2>5. Send conversions back to the ad platforms</h2>
+<p>Ad algorithms optimize for whatever you tell them is a conversion. If that's a form fill, they'll find cheap form fills. Send them better signals:</p>
+<ul>
+<li><strong>Meta Conversions API</strong> alongside the pixel, with deduplication.</li>
+<li><strong>Google Ads enhanced conversions</strong> plus offline conversion imports for SQLs and opportunities.</li>
+<li><strong>LinkedIn Insight Tag</strong> and conversions API for key events.</li>
+</ul>
+
+<h2>6. QA before you trust it</h2>
+<ul>
+<li>Test every form and booking flow in GTM preview and GA4 DebugView.</li>
+<li>Check that one real conversion shows up once, not twice, in GA4, the ad platform and HubSpot.</li>
+<li>Re-test after every site release. Tracking breaks silently.</li>
+</ul>
+
+<h2>The one-page version</h2>
+<ul>
+<li>GTM everywhere, GA4 through GTM, internal traffic filtered</li>
+<li>Written UTM convention, lowercase, shared builder</li>
+<li>Key events fire on success, not on click</li>
+<li>UTMs and click IDs stored in the CRM, first and latest touch</li>
+<li>Server-side or offline conversions sent back to Meta, Google and LinkedIn</li>
+<li>QA after every release</li>
+</ul>
+
+<p>Clean tracking won't make your campaigns better by itself. It will stop you from confidently scaling the wrong ones. Questions? Find me on <a href="https://x.com/LALKGEORGE">X</a> or <a href="https://www.linkedin.com/in/lalkgeorge">LinkedIn</a>.</p>
