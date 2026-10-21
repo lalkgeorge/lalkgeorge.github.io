@@ -118,7 +118,25 @@ def head(title, desc, url, prefix):
 {FAVICON}
 {FONT}
 <link rel="stylesheet" href="{prefix}assets/blog.css">
-<!-- analytics -->
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7RPEQ9YJLS"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){{dataLayer.push(arguments);}}
+  gtag('js', new Date());
+  gtag('config', 'G-7RPEQ9YJLS');
+  // Track clicks on X / LinkedIn / share buttons
+  document.addEventListener('click', function(e){{
+    var a = e.target.closest && e.target.closest('a[href]'); if(!a) return;
+    var h = a.href;
+    var net = /x\.com\/intent|linkedin\.com\/sharing/.test(h) ? 'share' :
+              /x\.com|twitter\.com/.test(h) ? 'x' : /linkedin\.com/.test(h) ? 'linkedin' : null;
+    if(!net) return;
+    gtag('event', net === 'share' ? 'share' : 'social_click', {{
+      method: /linkedin/.test(h) ? 'linkedin' : 'x', link_text: (a.textContent||'').trim().slice(0,60)
+    }});
+  }});
+</script>
 </head>
 <body>
 <nav>

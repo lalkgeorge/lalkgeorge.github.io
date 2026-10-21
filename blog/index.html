@@ -16,7 +16,25 @@
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%234f46e5'/><text x='50' y='66' font-size='46' font-family='Arial' font-weight='800' fill='white' text-anchor='middle'>LG</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../assets/blog.css">
-<!-- analytics -->
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7RPEQ9YJLS"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-7RPEQ9YJLS');
+  // Track clicks on X / LinkedIn / share buttons
+  document.addEventListener('click', function(e){
+    var a = e.target.closest && e.target.closest('a[href]'); if(!a) return;
+    var h = a.href;
+    var net = /x\.com\/intent|linkedin\.com\/sharing/.test(h) ? 'share' :
+              /x\.com|twitter\.com/.test(h) ? 'x' : /linkedin\.com/.test(h) ? 'linkedin' : null;
+    if(!net) return;
+    gtag('event', net === 'share' ? 'share' : 'social_click', {
+      method: /linkedin/.test(h) ? 'linkedin' : 'x', link_text: (a.textContent||'').trim().slice(0,60)
+    });
+  });
+</script>
 </head>
 <body>
 <nav>
